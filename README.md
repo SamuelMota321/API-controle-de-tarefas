@@ -28,11 +28,8 @@ Padrão de resposta  (STATUS: 201)
 
 #### Possíveis erros
 
-| STATUS | DESCRIÇÃO
-| ------ | ------ | 
-| 400 | Padrão de corpo inválido |
-| 409 | Conflito, usuário já registrado |
-
+##### STATUS (400) - Padrão de corpo inválido
+##### STATUS (409) - Conflito, usuário já registrado
 
 
 ### Login de usuário POST /users/login
