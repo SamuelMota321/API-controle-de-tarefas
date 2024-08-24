@@ -1,6 +1,88 @@
-# M5 - Entrega 1 - Gerenciamento de Tarefas API
+# Controle de Tarefas API
 
-Está documentação servirá de base para entrega, todas as rotas deverão se comportar assim como está previsto na documentação abaixo:
+## Rotas de Usuário 
+
+### Registro de usuário POST /users/
+
+Padrão de corpo
+
+```json
+{
+	"name": "Lorem Ipsun",
+	"email": "loremipsum@gmail.com",
+	"password": "@12patinhos"
+}
+```
+
+Padrão de resposta  (STATUS: 201)
+
+```json
+{
+    "id": 1,
+    "title": "Lorem ipsum",
+    "content": "Lorem ipsum",
+    "finished": false,
+    "categoryId": 1,
+}    
+```
+
+#### possíveis erros
+
+STATUS (400) - Padrão de corpo inválido
+STATUS (409) - Conflito, usuário já registrado
+
+
+### Login de usuário POST /users/login
+
+Padrão de corpo
+
+```json
+{
+	"email": "LoremIpsum@gmail.com",
+	"password": "@12patinhos"
+}
+```
+
+Padrão de resposta  (STATUS: 200)
+
+```json
+{
+	"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI0NTExODk1fQ.pw9hY5Hmt0yUDQSZtS8zOkzzb-apDAp9ir8ielM0PVg",
+	"user": {
+		"id": 5,
+		"name": "Lorem Ipsum",
+		"email": "LoremIpsum@gmail.com"
+	}
+}    
+```
+
+#### possíveis erros
+
+STATUS (400) - Padrão de corpo inválido
+STATUS (403) - Senha e email
+STATUS (404) - Usuário não existe
+
+
+
+### Recuperar usuário para login automático GET /users/profile
+
+Padrão de resposta  (STATUS: 200)
+
+```json
+{
+    "id": 1,
+    "name": "Lorem Ipsum",
+    "email": "LoremIpsum@email.com"
+}   
+```
+
+#### possíveis erros
+
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida
+
+
+## Rotas de Tarefas 
 
 ### Criação de tarefa POST /tasks
 
@@ -28,15 +110,11 @@ Padrão de resposta  (STATUS: 201)
 
 #### Possíveis erros:
 
-STATUS (404) - Categoria inválida
+STATUS (400) -  quando o corpo não é compatível com o padrão
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida ou categoria inválida
+STATUS (404) - Categoria não encontrada
 
-```json
-{
-    "message": "Category not found"
-}
-```
-
-STATUS (409) quando o corpo não é compatível com o padrão
 
 ### Leitura de tarefas GET /tasks
 
@@ -61,17 +139,14 @@ URL Search Params
 
 | Parâmetro | Exemplo de uso | Descrição |
 | ------ | ------ | ------ |
-| category | /tasks?category=estudo | Forneça o "id" da categoria para trazer somente tarefas da categoria determinada |
+| category | /tasks?category=estudo |
 
 #### Possíveis erros:
 
-STATUS (404) - Categoria inválida
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida 
+STATUS (404) - Categoria não encontrada
 
-```json
-{
-    "message": "Category not found"
-}
-```
 
 ### Leitura de individual GET /tasks/:1
 
@@ -91,14 +166,11 @@ Padrão de resposta  (STATUS: 200)
 ```
 
 #### Possíveis erros:
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida 
+STATUS (403) - Usuário não é o dono dessa tarefa
+STATUS (404) - Tarefa não encontrada
 
-STATUS (404) - Tarefa inválida
-
-```json
-{
-    "message": "Task not found"
-}
-```
 
 ### Atualizar tarefa PATCH /tasks/:id
 
@@ -127,23 +199,11 @@ Padrão de resposta (STATUS: 200)
 
 #### Possíveis erros:
 
-STATUS (404) - Tarefa inválida
-
-```json
-{
-    "message": "Task not found"
-}
-```
-
-STATUS (404) - Categoria inválida
-
-```json
-{
-    "message": "Category not found"
-}
-```
-
-STATUS (409) quando o corpo não é compatível com o padrão
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida 
+STATUS (403) - Usuário não é o dono dessa tarefa 
+STATUS (404) - Tarefa não encontrada
+STATUS (404) - Categoria não encontrada
 
 ### Excluir tarefa PATCH /tasks/:id
 
@@ -151,13 +211,12 @@ Está rota não tem um corpo de resposta (STATUS: 204)
 
 #### Possíveis erros:
 
-STATUS (404) - Tarefa inválida
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Usuário não é o dono dessa tarefa 
+STATUS (403) - Token inválida 
+STATUS (404) - Tarefa não encontrada
 
-```json
-{
-    "message": "Task not found"
-}
-```
+## Rotas de Categoria
 
 ### Criação de categoria POST /categories
 
@@ -175,23 +234,21 @@ Padrão de resposta (STATUS 201)
 {
     "id": 1,
     "name": "Example",
+    "userId": 1
 }
 ```
 
 #### Possíveis erros:
+STATUS (400) - quando o corpo não é compatível com o padrão
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida 
 
-STATUS (409) quando o corpo não é compatível com o padrão
-
-### Exclusão de categoria POST
+### Exclusão de categoria DELETE /categories/:id
 
 Está rota não tem um corpo de resposta (STATUS: 204)
 
 #### Possíveis erros:
 
-STATUS (404) - Categoria inválida
-
-```json
-{
-    "message": "Category not found"
-}
-```
+STATUS (401) - É necessário uma token de usuário 
+STATUS (403) - Token inválida 
+STATUS (404) - Categoria não encontrada

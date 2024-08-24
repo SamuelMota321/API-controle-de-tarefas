@@ -8,19 +8,22 @@ export class TaskControllers {
     constructor(@inject("TaskServices") private taskServices: TaskServices) { }
 
     async create(req: Request, res: Response) {
-        const response = await this.taskServices.create(req.body)
+        const id = res.locals.decode.id
+        const response = await this.taskServices.create(id, req.body)
         return res.status(201).json(response);
     }
 
     async getTasks(req: Request, res: Response) {
-        const category =  req.query.category;
-        const response = await this.taskServices.getTasks(category as string);
+        const category = req.query.category;
+        const id = res.locals.decode.id;
+        const response = await this.taskServices.getTasks(id, category as string);
         return res.status(200).json(response);
     }
 
     async getOneTask(req: Request, res: Response) {
-        const category =  req.query.category;
-        const response = await this.taskServices.getOneTask( Number(req.params.id));
+        const userId = res.locals.decode.id;
+        const category = req.query.category;
+        const response = await this.taskServices.getOneTask(userId, Number(req.params.id));
         return res.status(200).json(response)
     }
 
