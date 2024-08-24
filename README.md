@@ -26,10 +26,10 @@ Padrão de resposta  (STATUS: 201)
 }    
 ```
 
-#### possíveis erros
+#### Possíveis erros
 
-STATUS (400) - Padrão de corpo inválido
-STATUS (409) - Conflito, usuário já registrado
+##### STATUS (400) - Padrão de corpo inválido
+##### STATUS (409) - Conflito, usuário já registrado
 
 
 ### Login de usuário POST /users/login
@@ -56,11 +56,11 @@ Padrão de resposta  (STATUS: 200)
 }    
 ```
 
-#### possíveis erros
+#### Possíveis erros
 
-STATUS (400) - Padrão de corpo inválido
-STATUS (403) - Senha e email
-STATUS (404) - Usuário não existe
+##### STATUS (400) - Padrão de corpo inválido
+##### STATUS (403) - Senha e email
+##### STATUS (404) - Usuário não existe
 
 
 
@@ -76,10 +76,10 @@ Padrão de resposta  (STATUS: 200)
 }   
 ```
 
-#### possíveis erros
+#### Possíveis erros
 
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida
 
 
 ## Rotas de Tarefas 
@@ -110,10 +110,10 @@ Padrão de resposta  (STATUS: 201)
 
 #### Possíveis erros:
 
-STATUS (400) -  quando o corpo não é compatível com o padrão
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida ou categoria inválida
-STATUS (404) - Categoria não encontrada
+##### STATUS (400) -  quando o corpo não é compatível com o padrão
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida ou categoria inválida
+##### STATUS (404) - Categoria não encontrada
 
 
 ### Leitura de tarefas GET /tasks
@@ -137,15 +137,15 @@ Padrão de resposta  (STATUS: 200)
 
 URL Search Params
 
-| Parâmetro | Exemplo de uso | Descrição |
-| ------ | ------ | ------ |
+| Parâmetro | Exemplo de uso 
+| ------ | ------ | 
 | category | /tasks?category=estudo |
 
 #### Possíveis erros:
 
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida 
-STATUS (404) - Categoria não encontrada
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida 
+##### STATUS (404) - Categoria não encontrada
 
 
 ### Leitura de individual GET /tasks/:1
@@ -166,10 +166,10 @@ Padrão de resposta  (STATUS: 200)
 ```
 
 #### Possíveis erros:
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida 
-STATUS (403) - Usuário não é o dono dessa tarefa
-STATUS (404) - Tarefa não encontrada
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida 
+##### STATUS (403) - Usuário não é o dono dessa tarefa
+##### STATUS (404) - Tarefa não encontrada
 
 
 ### Atualizar tarefa PATCH /tasks/:id
@@ -199,11 +199,11 @@ Padrão de resposta (STATUS: 200)
 
 #### Possíveis erros:
 
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida 
-STATUS (403) - Usuário não é o dono dessa tarefa 
-STATUS (404) - Tarefa não encontrada
-STATUS (404) - Categoria não encontrada
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida 
+##### STATUS (403) - Usuário não é o dono dessa tarefa 
+##### STATUS (404) - Tarefa não encontrada
+##### STATUS (404) - Categoria não encontrada
 
 ### Excluir tarefa PATCH /tasks/:id
 
@@ -211,10 +211,10 @@ Está rota não tem um corpo de resposta (STATUS: 204)
 
 #### Possíveis erros:
 
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Usuário não é o dono dessa tarefa 
-STATUS (403) - Token inválida 
-STATUS (404) - Tarefa não encontrada
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Usuário não é o dono dessa tarefa 
+##### STATUS (403) - Token inválida 
+##### STATUS (404) - Tarefa não encontrada
 
 ## Rotas de Categoria
 
@@ -239,9 +239,9 @@ Padrão de resposta (STATUS 201)
 ```
 
 #### Possíveis erros:
-STATUS (400) - quando o corpo não é compatível com o padrão
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida 
+##### STATUS (400) - quando o corpo não é compatível com o padrão
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida 
 
 ### Exclusão de categoria DELETE /categories/:id
 
@@ -249,6 +249,6 @@ Está rota não tem um corpo de resposta (STATUS: 204)
 
 #### Possíveis erros:
 
-STATUS (401) - É necessário uma token de usuário 
-STATUS (403) - Token inválida 
-STATUS (404) - Categoria não encontrada
+##### STATUS (401) - É necessário uma token de usuário 
+##### STATUS (403) - Token inválida 
+##### STATUS (404) - Categoria não encontrada
