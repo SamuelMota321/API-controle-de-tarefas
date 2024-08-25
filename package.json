@@ -7,7 +7,7 @@
     "node": "18"
   },
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",
     "build": "npx tsc",
     "migrate:deploy": "npx prisma migrate deploy",
     "dev": "dotenv -e .env.dev -- tsnd --respawn src/server.ts",
