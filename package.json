@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Está documentação servirá de base para entrega, todas as rotas deverão se comportar assim como está previsto na documentação abaixo:",
   "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "build": "npx tsc",
